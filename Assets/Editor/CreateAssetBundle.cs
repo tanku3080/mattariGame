@@ -11,8 +11,8 @@ public class CreateAssetBundle
     static private void Build_windows64()
     {
         BuildTarget target = BuildTarget.StandaloneWindows64;
-
-        var outPut = Path.Combine(path,target.ToString());
+        var outPut = Path.Combine(path,target.ToString() + DateTime.Now.Second);
+        
         if (Directory.Exists(outPut) == false)
         {
             Directory.CreateDirectory(outPut);
@@ -24,13 +24,14 @@ public class CreateAssetBundle
             var builder = new AssetBundleBuild();
             builder.assetBundleName = item;
             builder.assetNames = AssetDatabase.GetAssetPathsFromAssetBundle(builder.assetBundleName);
-
-            builder.assetBundleVariant = veriant + TimeZoneInfo.Utc;
+            builder.assetBundleVariant = veriant;
             buildList.Add(builder);
         }
         if (buildList.Count > 0)
         {
             BuildPipeline.BuildAssetBundles(outPut, buildList.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression,target);
+
         }
+        AssetDatabase.SaveAssets();
     }
 }

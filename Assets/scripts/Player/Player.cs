@@ -5,11 +5,11 @@ using UnityEngine;
 /// <summary>player‚Ì‹““®‚ğs‚¤</summary>
 public class Player : MonoBehaviour
 {
-    new Rigidbody rigidbody;
     [SerializeField] float playerSpeed = 5f;
     [SerializeField] float rotationSpeed = 10f;
     /// <summary>Šp“x§ŒÀ‚Ì’l</summary>
     [SerializeField] float limitRotY = 70;
+    Rigidbody rigidbody;
     // Start is called before the first frame update
     void Start()
     {
